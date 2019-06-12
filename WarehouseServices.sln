@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseServices", "WarehouseServices\WarehouseServices.csproj", "{254C2F03-3C2E-4DC1-A9CE-EEB8049C7A3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseDataAccess", "WarehouseDataAccess\WarehouseDataAccess.csproj", "{3BD8C484-AEE0-447C-B15E-BBA1C43574EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{254C2F03-3C2E-4DC1-A9CE-EEB8049C7A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254C2F03-3C2E-4DC1-A9CE-EEB8049C7A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254C2F03-3C2E-4DC1-A9CE-EEB8049C7A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254C2F03-3C2E-4DC1-A9CE-EEB8049C7A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD8C484-AEE0-447C-B15E-BBA1C43574EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD8C484-AEE0-447C-B15E-BBA1C43574EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD8C484-AEE0-447C-B15E-BBA1C43574EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD8C484-AEE0-447C-B15E-BBA1C43574EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAF6AF7D-0EB3-4AEC-B60B-6AC50C97D68D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2be5c418526f49ca841db41d2235e1cc" Name="Diagram1">
+        <EntityTypeShape EntityType="WarehouseDetailsModel.Bin" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.BoM" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.BOMItem" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.Courier" Width="1.5" PointX="8.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.CourierDelivery" Width="1.5" PointX="10.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.Customer" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.DefectNotice" Width="1.5" PointX="13.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.DeliveryNoteInward" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.DeliveryNoteOutward" Width="1.5" PointX="8.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.DelType" Width="1.5" PointX="6" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.Employee" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.EmployeeType" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.GoodsIssued" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.GoodsIssuedItem" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.GoodsReceivedNote" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.GoodsReceiveItem" Width="1.5" PointX="12.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.Inventory" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.InwardDelItem" Width="1.5" PointX="10.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.ReturnNote" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.ReturnNoteItem" Width="1.5" PointX="10.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.ReturnType" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseDetailsModel.Supplier" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKInventory812374" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKBOMItem636564" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKBOMItem551248" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKGoodsIssue696459" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKCourierDel331922" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKCourierDel589753" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKDeliveryNo606573" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKReturnNote896548" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKDefectNoti451172" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKDefectNoti49230" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKDeliveryNo349979" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKDeliveryNo722798" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKInwardDelI127670" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKDeliveryNo99254" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKEmployee484089" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKGoodsIssue820338" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKGoodsRecei684024" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKReturnNote419469" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKGoodsIssue899455" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKGoodsRecei902370" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKGoodsRecei790778" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKInwardDelI852451" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKReturnNote127183" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseDetailsModel.FKReturnNote650215" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

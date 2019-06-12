@@ -1,0 +1,1531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WarehouseDetailsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bin">
+          <Key>
+            <PropertyRef Name="BinID" />
+          </Key>
+          <Property Name="BinID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BinLocation" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BoM">
+          <Key>
+            <PropertyRef Name="BOMID" />
+          </Key>
+          <Property Name="BOMID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BomType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BomMapID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BOMDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOMItem">
+          <Key>
+            <PropertyRef Name="BOMItemID" />
+          </Key>
+          <Property Name="BOMItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BOMID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemQty" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BOMItemStatus" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courier">
+          <Key>
+            <PropertyRef Name="CourierID" />
+          </Key>
+          <Property Name="CourierID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourierName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourierEmail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourierDelivery">
+          <Key>
+            <PropertyRef Name="CourierDelID" />
+          </Key>
+          <Property Name="CourierDelID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OutwardDelID" Type="varchar" MaxLength="255" />
+          <Property Name="CourierID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CusAddressLine1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CusAddressLine2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomerCity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomerCountry" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomerPostCode" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefectNotice">
+          <Key>
+            <PropertyRef Name="DefectNoteID" />
+          </Key>
+          <Property Name="DefectNoteID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NoticeDate" Type="datetime" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveryNoteInward">
+          <Key>
+            <PropertyRef Name="InwardDelID" />
+          </Key>
+          <Property Name="InwardDelID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReceivedDate" Type="datetime" Nullable="false" />
+          <Property Name="InspectedEmpID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveryNoteOutward">
+          <Key>
+            <PropertyRef Name="OutwardDelID" />
+          </Key>
+          <Property Name="OutwardDelID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DelNoteDate" Type="datetime" Nullable="false" />
+          <Property Name="CustomerID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DelTypeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DelStatus" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DelType">
+          <Key>
+            <PropertyRef Name="DelTypeID" />
+          </Key>
+          <Property Name="DelTypeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DelTypeDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="empTypeID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="empTypeID" />
+          </Key>
+          <Property Name="empTypeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="empTypeDesc" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GoodsIssued">
+          <Key>
+            <PropertyRef Name="GoodsIssuedID" />
+          </Key>
+          <Property Name="GoodsIssuedID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IssuedDate" Type="datetime" Nullable="false" />
+          <Property Name="IssuedEmployeeID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsIssuedItem">
+          <Key>
+            <PropertyRef Name="GoodsIssuedItemID" />
+          </Key>
+          <Property Name="GoodsIssuedItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GoodsIssuedID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemQty" Type="int" Nullable="false" />
+          <Property Name="BOMItemID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsReceivedNote">
+          <Key>
+            <PropertyRef Name="RecNoteID" />
+          </Key>
+          <Property Name="RecNoteID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NoteDate" Type="datetime" Nullable="false" />
+          <Property Name="IssueEmpID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsReceiveItem">
+          <Key>
+            <PropertyRef Name="ReceivedItemID" />
+          </Key>
+          <Property Name="ReceivedItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RecNoteID" Type="varchar" MaxLength="255" />
+          <Property Name="InwardDelItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BinID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AvailableQty" Type="int" Nullable="false" />
+          <Property Name="ReorderLevel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InwardDelItem">
+          <Key>
+            <PropertyRef Name="InwardDelItemID" />
+          </Key>
+          <Property Name="InwardDelItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="InwardDelID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemQty" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReturnNote">
+          <Key>
+            <PropertyRef Name="ReturnNoteID" />
+          </Key>
+          <Property Name="ReturnNoteID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReturnDate" Type="datetime" Nullable="false" />
+          <Property Name="ReturnTypeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IssuedEmployeeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomerID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReturnNoteItem">
+          <Key>
+            <PropertyRef Name="ReturnNoteItemID" />
+          </Key>
+          <Property Name="ReturnNoteItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReturnNoteID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReturnType">
+          <Key>
+            <PropertyRef Name="ReturnTypeID" />
+          </Key>
+          <Property Name="ReturnTypeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReturnTypeDesc" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierAddressLine1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierAddressLine2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierCity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierCountry" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SupplierPostCode" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FKBOMItem551248">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="BOMItem" Type="Self.BOMItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="BOMItem">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBOMItem636564">
+          <End Role="BoM" Type="Self.BoM" Multiplicity="1" />
+          <End Role="BOMItem" Type="Self.BOMItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoM">
+              <PropertyRef Name="BOMID" />
+            </Principal>
+            <Dependent Role="BOMItem">
+              <PropertyRef Name="BOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCourierDel331922">
+          <End Role="Courier" Type="Self.Courier" Multiplicity="1" />
+          <End Role="CourierDelivery" Type="Self.CourierDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courier">
+              <PropertyRef Name="CourierID" />
+            </Principal>
+            <Dependent Role="CourierDelivery">
+              <PropertyRef Name="CourierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCourierDel589753">
+          <End Role="DeliveryNoteOutward" Type="Self.DeliveryNoteOutward" Multiplicity="0..1" />
+          <End Role="CourierDelivery" Type="Self.CourierDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryNoteOutward">
+              <PropertyRef Name="OutwardDelID" />
+            </Principal>
+            <Dependent Role="CourierDelivery">
+              <PropertyRef Name="OutwardDelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDefectNoti451172">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="DefectNotice" Type="Self.DefectNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="DefectNotice">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDefectNoti49230">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="DefectNotice" Type="Self.DefectNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="DefectNotice">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo349979">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="DeliveryNoteInward" Type="Self.DeliveryNoteInward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteInward">
+              <PropertyRef Name="InspectedEmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo606573">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="DeliveryNoteOutward" Type="Self.DeliveryNoteOutward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteOutward">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo722798">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="DeliveryNoteInward" Type="Self.DeliveryNoteInward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteInward">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo99254">
+          <End Role="DelType" Type="Self.DelType" Multiplicity="1" />
+          <End Role="DeliveryNoteOutward" Type="Self.DeliveryNoteOutward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DelType">
+              <PropertyRef Name="DelTypeID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteOutward">
+              <PropertyRef Name="DelTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEmployee484089">
+          <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="empTypeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="empTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsIssue696459">
+          <End Role="BOMItem" Type="Self.BOMItem" Multiplicity="1" />
+          <End Role="GoodsIssuedItem" Type="Self.GoodsIssuedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOMItem">
+              <PropertyRef Name="BOMItemID" />
+            </Principal>
+            <Dependent Role="GoodsIssuedItem">
+              <PropertyRef Name="BOMItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsIssue820338">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="GoodsIssued" Type="Self.GoodsIssued" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="GoodsIssued">
+              <PropertyRef Name="IssuedEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsIssue899455">
+          <End Role="GoodsIssued" Type="Self.GoodsIssued" Multiplicity="1" />
+          <End Role="GoodsIssuedItem" Type="Self.GoodsIssuedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsIssued">
+              <PropertyRef Name="GoodsIssuedID" />
+            </Principal>
+            <Dependent Role="GoodsIssuedItem">
+              <PropertyRef Name="GoodsIssuedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsRecei684024">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="GoodsReceivedNote" Type="Self.GoodsReceivedNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="GoodsReceivedNote">
+              <PropertyRef Name="IssueEmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsRecei790778">
+          <End Role="InwardDelItem" Type="Self.InwardDelItem" Multiplicity="1" />
+          <End Role="GoodsReceiveItem" Type="Self.GoodsReceiveItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InwardDelItem">
+              <PropertyRef Name="InwardDelItemID" />
+            </Principal>
+            <Dependent Role="GoodsReceiveItem">
+              <PropertyRef Name="InwardDelItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsRecei902370">
+          <End Role="GoodsReceivedNote" Type="Self.GoodsReceivedNote" Multiplicity="0..1" />
+          <End Role="GoodsReceiveItem" Type="Self.GoodsReceiveItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsReceivedNote">
+              <PropertyRef Name="RecNoteID" />
+            </Principal>
+            <Dependent Role="GoodsReceiveItem">
+              <PropertyRef Name="RecNoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKInventory812374">
+          <End Role="Bin" Type="Self.Bin" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bin">
+              <PropertyRef Name="BinID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="BinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKInwardDelI127670">
+          <End Role="DeliveryNoteInward" Type="Self.DeliveryNoteInward" Multiplicity="1" />
+          <End Role="InwardDelItem" Type="Self.InwardDelItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryNoteInward">
+              <PropertyRef Name="InwardDelID" />
+            </Principal>
+            <Dependent Role="InwardDelItem">
+              <PropertyRef Name="InwardDelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKInwardDelI852451">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="InwardDelItem" Type="Self.InwardDelItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="InwardDelItem">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote127183">
+          <End Role="ReturnType" Type="Self.ReturnType" Multiplicity="1" />
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnType">
+              <PropertyRef Name="ReturnTypeID" />
+            </Principal>
+            <Dependent Role="ReturnNote">
+              <PropertyRef Name="ReturnTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote419469">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="ReturnNote">
+              <PropertyRef Name="IssuedEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote650215">
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="1" />
+          <End Role="ReturnNoteItem" Type="Self.ReturnNoteItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnNote">
+              <PropertyRef Name="ReturnNoteID" />
+            </Principal>
+            <Dependent Role="ReturnNoteItem">
+              <PropertyRef Name="ReturnNoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote896548">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ReturnNote">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WarehouseDetailsModelStoreContainer">
+          <EntitySet Name="Bin" EntityType="Self.Bin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BoM" EntityType="Self.BoM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BOMItem" EntityType="Self.BOMItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courier" EntityType="Self.Courier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourierDelivery" EntityType="Self.CourierDelivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefectNotice" EntityType="Self.DefectNotice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryNoteInward" EntityType="Self.DeliveryNoteInward" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryNoteOutward" EntityType="Self.DeliveryNoteOutward" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DelType" EntityType="Self.DelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsIssued" EntityType="Self.GoodsIssued" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsIssuedItem" EntityType="Self.GoodsIssuedItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsReceivedNote" EntityType="Self.GoodsReceivedNote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsReceiveItem" EntityType="Self.GoodsReceiveItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InwardDelItem" EntityType="Self.InwardDelItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnNote" EntityType="Self.ReturnNote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnNoteItem" EntityType="Self.ReturnNoteItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnType" EntityType="Self.ReturnType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKBOMItem551248" Association="Self.FKBOMItem551248">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="BOMItem" EntitySet="BOMItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKBOMItem636564" Association="Self.FKBOMItem636564">
+            <End Role="BoM" EntitySet="BoM" />
+            <End Role="BOMItem" EntitySet="BOMItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKCourierDel331922" Association="Self.FKCourierDel331922">
+            <End Role="Courier" EntitySet="Courier" />
+            <End Role="CourierDelivery" EntitySet="CourierDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="FKCourierDel589753" Association="Self.FKCourierDel589753">
+            <End Role="DeliveryNoteOutward" EntitySet="DeliveryNoteOutward" />
+            <End Role="CourierDelivery" EntitySet="CourierDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="FKDefectNoti451172" Association="Self.FKDefectNoti451172">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="DefectNotice" EntitySet="DefectNotice" />
+          </AssociationSet>
+          <AssociationSet Name="FKDefectNoti49230" Association="Self.FKDefectNoti49230">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="DefectNotice" EntitySet="DefectNotice" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo349979" Association="Self.FKDeliveryNo349979">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="DeliveryNoteInward" EntitySet="DeliveryNoteInward" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo606573" Association="Self.FKDeliveryNo606573">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="DeliveryNoteOutward" EntitySet="DeliveryNoteOutward" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo722798" Association="Self.FKDeliveryNo722798">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="DeliveryNoteInward" EntitySet="DeliveryNoteInward" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo99254" Association="Self.FKDeliveryNo99254">
+            <End Role="DelType" EntitySet="DelType" />
+            <End Role="DeliveryNoteOutward" EntitySet="DeliveryNoteOutward" />
+          </AssociationSet>
+          <AssociationSet Name="FKEmployee484089" Association="Self.FKEmployee484089">
+            <End Role="EmployeeType" EntitySet="EmployeeType" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsIssue696459" Association="Self.FKGoodsIssue696459">
+            <End Role="BOMItem" EntitySet="BOMItem" />
+            <End Role="GoodsIssuedItem" EntitySet="GoodsIssuedItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsIssue820338" Association="Self.FKGoodsIssue820338">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="GoodsIssued" EntitySet="GoodsIssued" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsIssue899455" Association="Self.FKGoodsIssue899455">
+            <End Role="GoodsIssued" EntitySet="GoodsIssued" />
+            <End Role="GoodsIssuedItem" EntitySet="GoodsIssuedItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsRecei684024" Association="Self.FKGoodsRecei684024">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="GoodsReceivedNote" EntitySet="GoodsReceivedNote" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsRecei790778" Association="Self.FKGoodsRecei790778">
+            <End Role="InwardDelItem" EntitySet="InwardDelItem" />
+            <End Role="GoodsReceiveItem" EntitySet="GoodsReceiveItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsRecei902370" Association="Self.FKGoodsRecei902370">
+            <End Role="GoodsReceivedNote" EntitySet="GoodsReceivedNote" />
+            <End Role="GoodsReceiveItem" EntitySet="GoodsReceiveItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKInventory812374" Association="Self.FKInventory812374">
+            <End Role="Bin" EntitySet="Bin" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FKInwardDelI127670" Association="Self.FKInwardDelI127670">
+            <End Role="DeliveryNoteInward" EntitySet="DeliveryNoteInward" />
+            <End Role="InwardDelItem" EntitySet="InwardDelItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKInwardDelI852451" Association="Self.FKInwardDelI852451">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="InwardDelItem" EntitySet="InwardDelItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote127183" Association="Self.FKReturnNote127183">
+            <End Role="ReturnType" EntitySet="ReturnType" />
+            <End Role="ReturnNote" EntitySet="ReturnNote" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote419469" Association="Self.FKReturnNote419469">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ReturnNote" EntitySet="ReturnNote" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote650215" Association="Self.FKReturnNote650215">
+            <End Role="ReturnNote" EntitySet="ReturnNote" />
+            <End Role="ReturnNoteItem" EntitySet="ReturnNoteItem" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote896548" Association="Self.FKReturnNote896548">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ReturnNote" EntitySet="ReturnNote" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WarehouseDetailsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bin">
+          <Key>
+            <PropertyRef Name="BinID" />
+          </Key>
+          <Property Name="BinID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BinLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FKInventory812374" FromRole="Bin" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="BoM">
+          <Key>
+            <PropertyRef Name="BOMID" />
+          </Key>
+          <Property Name="BOMID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BomType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BomMapID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BOMDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BOMItems" Relationship="Self.FKBOMItem636564" FromRole="BoM" ToRole="BOMItem" />
+        </EntityType>
+        <EntityType Name="BOMItem">
+          <Key>
+            <PropertyRef Name="BOMItemID" />
+          </Key>
+          <Property Name="BOMItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BOMID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemQty" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BOMItemStatus" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="BoM" Relationship="Self.FKBOMItem636564" FromRole="BOMItem" ToRole="BoM" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FKBOMItem551248" FromRole="BOMItem" ToRole="Inventory" />
+          <NavigationProperty Name="GoodsIssuedItems" Relationship="Self.FKGoodsIssue696459" FromRole="BOMItem" ToRole="GoodsIssuedItem" />
+        </EntityType>
+        <EntityType Name="Courier">
+          <Key>
+            <PropertyRef Name="CourierID" />
+          </Key>
+          <Property Name="CourierID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourierName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourierEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CourierDeliveries" Relationship="Self.FKCourierDel331922" FromRole="Courier" ToRole="CourierDelivery" />
+        </EntityType>
+        <EntityType Name="CourierDelivery">
+          <Key>
+            <PropertyRef Name="CourierDelID" />
+          </Key>
+          <Property Name="CourierDelID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OutwardDelID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CourierID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Courier" Relationship="Self.FKCourierDel331922" FromRole="CourierDelivery" ToRole="Courier" />
+          <NavigationProperty Name="DeliveryNoteOutward" Relationship="Self.FKCourierDel589753" FromRole="CourierDelivery" ToRole="DeliveryNoteOutward" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CusAddressLine1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CusAddressLine2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerCountry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerPostCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DeliveryNoteOutwards" Relationship="Self.FKDeliveryNo606573" FromRole="Customer" ToRole="DeliveryNoteOutward" />
+          <NavigationProperty Name="ReturnNotes" Relationship="Self.FKReturnNote896548" FromRole="Customer" ToRole="ReturnNote" />
+        </EntityType>
+        <EntityType Name="DefectNotice">
+          <Key>
+            <PropertyRef Name="DefectNoteID" />
+          </Key>
+          <Property Name="DefectNoteID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoticeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FKDefectNoti451172" FromRole="DefectNotice" ToRole="Supplier" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FKDefectNoti49230" FromRole="DefectNotice" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="DeliveryNoteInward">
+          <Key>
+            <PropertyRef Name="InwardDelID" />
+          </Key>
+          <Property Name="InwardDelID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InspectedEmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FKDeliveryNo349979" FromRole="DeliveryNoteInward" ToRole="Employee" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FKDeliveryNo722798" FromRole="DeliveryNoteInward" ToRole="Supplier" />
+          <NavigationProperty Name="InwardDelItems" Relationship="Self.FKInwardDelI127670" FromRole="DeliveryNoteInward" ToRole="InwardDelItem" />
+        </EntityType>
+        <EntityType Name="DeliveryNoteOutward">
+          <Key>
+            <PropertyRef Name="OutwardDelID" />
+          </Key>
+          <Property Name="OutwardDelID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DelNoteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DelTypeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DelStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CourierDeliveries" Relationship="Self.FKCourierDel589753" FromRole="DeliveryNoteOutward" ToRole="CourierDelivery" />
+          <NavigationProperty Name="Customer" Relationship="Self.FKDeliveryNo606573" FromRole="DeliveryNoteOutward" ToRole="Customer" />
+          <NavigationProperty Name="DelType" Relationship="Self.FKDeliveryNo99254" FromRole="DeliveryNoteOutward" ToRole="DelType" />
+        </EntityType>
+        <EntityType Name="DelType">
+          <Key>
+            <PropertyRef Name="DelTypeID" />
+          </Key>
+          <Property Name="DelTypeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DelTypeDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DeliveryNoteOutwards" Relationship="Self.FKDeliveryNo99254" FromRole="DelType" ToRole="DeliveryNoteOutward" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="empTypeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DeliveryNoteInwards" Relationship="Self.FKDeliveryNo349979" FromRole="Employee" ToRole="DeliveryNoteInward" />
+          <NavigationProperty Name="EmployeeType" Relationship="Self.FKEmployee484089" FromRole="Employee" ToRole="EmployeeType" />
+          <NavigationProperty Name="GoodsIssueds" Relationship="Self.FKGoodsIssue820338" FromRole="Employee" ToRole="GoodsIssued" />
+          <NavigationProperty Name="GoodsReceivedNotes" Relationship="Self.FKGoodsRecei684024" FromRole="Employee" ToRole="GoodsReceivedNote" />
+          <NavigationProperty Name="ReturnNotes" Relationship="Self.FKReturnNote419469" FromRole="Employee" ToRole="ReturnNote" />
+        </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="empTypeID" />
+          </Key>
+          <Property Name="empTypeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="empTypeDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FKEmployee484089" FromRole="EmployeeType" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="GoodsIssued">
+          <Key>
+            <PropertyRef Name="GoodsIssuedID" />
+          </Key>
+          <Property Name="GoodsIssuedID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IssuedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IssuedEmployeeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FKGoodsIssue820338" FromRole="GoodsIssued" ToRole="Employee" />
+          <NavigationProperty Name="GoodsIssuedItems" Relationship="Self.FKGoodsIssue899455" FromRole="GoodsIssued" ToRole="GoodsIssuedItem" />
+        </EntityType>
+        <EntityType Name="GoodsIssuedItem">
+          <Key>
+            <PropertyRef Name="GoodsIssuedItemID" />
+          </Key>
+          <Property Name="GoodsIssuedItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GoodsIssuedID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemQty" Type="Int32" Nullable="false" />
+          <Property Name="BOMItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BOMItem" Relationship="Self.FKGoodsIssue696459" FromRole="GoodsIssuedItem" ToRole="BOMItem" />
+          <NavigationProperty Name="GoodsIssued" Relationship="Self.FKGoodsIssue899455" FromRole="GoodsIssuedItem" ToRole="GoodsIssued" />
+        </EntityType>
+        <EntityType Name="GoodsReceivedNote">
+          <Key>
+            <PropertyRef Name="RecNoteID" />
+          </Key>
+          <Property Name="RecNoteID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IssueEmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FKGoodsRecei684024" FromRole="GoodsReceivedNote" ToRole="Employee" />
+          <NavigationProperty Name="GoodsReceiveItems" Relationship="Self.FKGoodsRecei902370" FromRole="GoodsReceivedNote" ToRole="GoodsReceiveItem" />
+        </EntityType>
+        <EntityType Name="GoodsReceiveItem">
+          <Key>
+            <PropertyRef Name="ReceivedItemID" />
+          </Key>
+          <Property Name="ReceivedItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RecNoteID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InwardDelItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GoodsReceivedNote" Relationship="Self.FKGoodsRecei902370" FromRole="GoodsReceiveItem" ToRole="GoodsReceivedNote" />
+          <NavigationProperty Name="InwardDelItem" Relationship="Self.FKGoodsRecei790778" FromRole="GoodsReceiveItem" ToRole="InwardDelItem" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BinID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AvailableQty" Type="Int32" Nullable="false" />
+          <Property Name="ReorderLevel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bin" Relationship="Self.FKInventory812374" FromRole="Inventory" ToRole="Bin" />
+          <NavigationProperty Name="BOMItems" Relationship="Self.FKBOMItem551248" FromRole="Inventory" ToRole="BOMItem" />
+          <NavigationProperty Name="DefectNotices" Relationship="Self.FKDefectNoti49230" FromRole="Inventory" ToRole="DefectNotice" />
+          <NavigationProperty Name="InwardDelItems" Relationship="Self.FKInwardDelI852451" FromRole="Inventory" ToRole="InwardDelItem" />
+        </EntityType>
+        <EntityType Name="InwardDelItem">
+          <Key>
+            <PropertyRef Name="InwardDelItemID" />
+          </Key>
+          <Property Name="InwardDelItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InwardDelID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemQty" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DeliveryNoteInward" Relationship="Self.FKInwardDelI127670" FromRole="InwardDelItem" ToRole="DeliveryNoteInward" />
+          <NavigationProperty Name="GoodsReceiveItems" Relationship="Self.FKGoodsRecei790778" FromRole="InwardDelItem" ToRole="GoodsReceiveItem" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FKInwardDelI852451" FromRole="InwardDelItem" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="ReturnNote">
+          <Key>
+            <PropertyRef Name="ReturnNoteID" />
+          </Key>
+          <Property Name="ReturnNoteID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnTypeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IssuedEmployeeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FKReturnNote896548" FromRole="ReturnNote" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FKReturnNote419469" FromRole="ReturnNote" ToRole="Employee" />
+          <NavigationProperty Name="ReturnType" Relationship="Self.FKReturnNote127183" FromRole="ReturnNote" ToRole="ReturnType" />
+          <NavigationProperty Name="ReturnNoteItems" Relationship="Self.FKReturnNote650215" FromRole="ReturnNote" ToRole="ReturnNoteItem" />
+        </EntityType>
+        <EntityType Name="ReturnNoteItem">
+          <Key>
+            <PropertyRef Name="ReturnNoteItemID" />
+          </Key>
+          <Property Name="ReturnNoteItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReturnNoteID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ReturnNote" Relationship="Self.FKReturnNote650215" FromRole="ReturnNoteItem" ToRole="ReturnNote" />
+        </EntityType>
+        <EntityType Name="ReturnType">
+          <Key>
+            <PropertyRef Name="ReturnTypeID" />
+          </Key>
+          <Property Name="ReturnTypeID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReturnTypeDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ReturnNotes" Relationship="Self.FKReturnNote127183" FromRole="ReturnType" ToRole="ReturnNote" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierAddressLine1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierAddressLine2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierCountry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierPostCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DefectNotices" Relationship="Self.FKDefectNoti451172" FromRole="Supplier" ToRole="DefectNotice" />
+          <NavigationProperty Name="DeliveryNoteInwards" Relationship="Self.FKDeliveryNo722798" FromRole="Supplier" ToRole="DeliveryNoteInward" />
+        </EntityType>
+        <Association Name="FKInventory812374">
+          <End Role="Bin" Type="Self.Bin" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bin">
+              <PropertyRef Name="BinID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="BinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBOMItem636564">
+          <End Role="BoM" Type="Self.BoM" Multiplicity="1" />
+          <End Role="BOMItem" Type="Self.BOMItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoM">
+              <PropertyRef Name="BOMID" />
+            </Principal>
+            <Dependent Role="BOMItem">
+              <PropertyRef Name="BOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBOMItem551248">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="BOMItem" Type="Self.BOMItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="BOMItem">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsIssue696459">
+          <End Role="BOMItem" Type="Self.BOMItem" Multiplicity="1" />
+          <End Role="GoodsIssuedItem" Type="Self.GoodsIssuedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOMItem">
+              <PropertyRef Name="BOMItemID" />
+            </Principal>
+            <Dependent Role="GoodsIssuedItem">
+              <PropertyRef Name="BOMItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCourierDel331922">
+          <End Role="Courier" Type="Self.Courier" Multiplicity="1" />
+          <End Role="CourierDelivery" Type="Self.CourierDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courier">
+              <PropertyRef Name="CourierID" />
+            </Principal>
+            <Dependent Role="CourierDelivery">
+              <PropertyRef Name="CourierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCourierDel589753">
+          <End Role="DeliveryNoteOutward" Type="Self.DeliveryNoteOutward" Multiplicity="0..1" />
+          <End Role="CourierDelivery" Type="Self.CourierDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryNoteOutward">
+              <PropertyRef Name="OutwardDelID" />
+            </Principal>
+            <Dependent Role="CourierDelivery">
+              <PropertyRef Name="OutwardDelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo606573">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="DeliveryNoteOutward" Type="Self.DeliveryNoteOutward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteOutward">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote896548">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ReturnNote">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDefectNoti451172">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="DefectNotice" Type="Self.DefectNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="DefectNotice">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDefectNoti49230">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="DefectNotice" Type="Self.DefectNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="DefectNotice">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo349979">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="DeliveryNoteInward" Type="Self.DeliveryNoteInward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteInward">
+              <PropertyRef Name="InspectedEmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo722798">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="DeliveryNoteInward" Type="Self.DeliveryNoteInward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteInward">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKInwardDelI127670">
+          <End Role="DeliveryNoteInward" Type="Self.DeliveryNoteInward" Multiplicity="1" />
+          <End Role="InwardDelItem" Type="Self.InwardDelItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryNoteInward">
+              <PropertyRef Name="InwardDelID" />
+            </Principal>
+            <Dependent Role="InwardDelItem">
+              <PropertyRef Name="InwardDelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDeliveryNo99254">
+          <End Role="DelType" Type="Self.DelType" Multiplicity="1" />
+          <End Role="DeliveryNoteOutward" Type="Self.DeliveryNoteOutward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DelType">
+              <PropertyRef Name="DelTypeID" />
+            </Principal>
+            <Dependent Role="DeliveryNoteOutward">
+              <PropertyRef Name="DelTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEmployee484089">
+          <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="empTypeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="empTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsIssue820338">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="GoodsIssued" Type="Self.GoodsIssued" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="GoodsIssued">
+              <PropertyRef Name="IssuedEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsRecei684024">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="GoodsReceivedNote" Type="Self.GoodsReceivedNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="GoodsReceivedNote">
+              <PropertyRef Name="IssueEmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote419469">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="ReturnNote">
+              <PropertyRef Name="IssuedEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsIssue899455">
+          <End Role="GoodsIssued" Type="Self.GoodsIssued" Multiplicity="1" />
+          <End Role="GoodsIssuedItem" Type="Self.GoodsIssuedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsIssued">
+              <PropertyRef Name="GoodsIssuedID" />
+            </Principal>
+            <Dependent Role="GoodsIssuedItem">
+              <PropertyRef Name="GoodsIssuedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsRecei902370">
+          <End Role="GoodsReceivedNote" Type="Self.GoodsReceivedNote" Multiplicity="0..1" />
+          <End Role="GoodsReceiveItem" Type="Self.GoodsReceiveItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsReceivedNote">
+              <PropertyRef Name="RecNoteID" />
+            </Principal>
+            <Dependent Role="GoodsReceiveItem">
+              <PropertyRef Name="RecNoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGoodsRecei790778">
+          <End Role="InwardDelItem" Type="Self.InwardDelItem" Multiplicity="1" />
+          <End Role="GoodsReceiveItem" Type="Self.GoodsReceiveItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InwardDelItem">
+              <PropertyRef Name="InwardDelItemID" />
+            </Principal>
+            <Dependent Role="GoodsReceiveItem">
+              <PropertyRef Name="InwardDelItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKInwardDelI852451">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="InwardDelItem" Type="Self.InwardDelItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="InwardDelItem">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote127183">
+          <End Role="ReturnType" Type="Self.ReturnType" Multiplicity="1" />
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnType">
+              <PropertyRef Name="ReturnTypeID" />
+            </Principal>
+            <Dependent Role="ReturnNote">
+              <PropertyRef Name="ReturnTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReturnNote650215">
+          <End Role="ReturnNote" Type="Self.ReturnNote" Multiplicity="1" />
+          <End Role="ReturnNoteItem" Type="Self.ReturnNoteItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnNote">
+              <PropertyRef Name="ReturnNoteID" />
+            </Principal>
+            <Dependent Role="ReturnNoteItem">
+              <PropertyRef Name="ReturnNoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WarehouseDetailsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bins" EntityType="Self.Bin" />
+          <EntitySet Name="BoMs" EntityType="Self.BoM" />
+          <EntitySet Name="BOMItems" EntityType="Self.BOMItem" />
+          <EntitySet Name="Couriers" EntityType="Self.Courier" />
+          <EntitySet Name="CourierDeliveries" EntityType="Self.CourierDelivery" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DefectNotices" EntityType="Self.DefectNotice" />
+          <EntitySet Name="DeliveryNoteInwards" EntityType="Self.DeliveryNoteInward" />
+          <EntitySet Name="DeliveryNoteOutwards" EntityType="Self.DeliveryNoteOutward" />
+          <EntitySet Name="DelTypes" EntityType="Self.DelType" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeTypes" EntityType="Self.EmployeeType" />
+          <EntitySet Name="GoodsIssueds" EntityType="Self.GoodsIssued" />
+          <EntitySet Name="GoodsIssuedItems" EntityType="Self.GoodsIssuedItem" />
+          <EntitySet Name="GoodsReceivedNotes" EntityType="Self.GoodsReceivedNote" />
+          <EntitySet Name="GoodsReceiveItems" EntityType="Self.GoodsReceiveItem" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+          <EntitySet Name="InwardDelItems" EntityType="Self.InwardDelItem" />
+          <EntitySet Name="ReturnNotes" EntityType="Self.ReturnNote" />
+          <EntitySet Name="ReturnNoteItems" EntityType="Self.ReturnNoteItem" />
+          <EntitySet Name="ReturnTypes" EntityType="Self.ReturnType" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <AssociationSet Name="FKInventory812374" Association="Self.FKInventory812374">
+            <End Role="Bin" EntitySet="Bins" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FKBOMItem636564" Association="Self.FKBOMItem636564">
+            <End Role="BoM" EntitySet="BoMs" />
+            <End Role="BOMItem" EntitySet="BOMItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKBOMItem551248" Association="Self.FKBOMItem551248">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="BOMItem" EntitySet="BOMItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsIssue696459" Association="Self.FKGoodsIssue696459">
+            <End Role="BOMItem" EntitySet="BOMItems" />
+            <End Role="GoodsIssuedItem" EntitySet="GoodsIssuedItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKCourierDel331922" Association="Self.FKCourierDel331922">
+            <End Role="Courier" EntitySet="Couriers" />
+            <End Role="CourierDelivery" EntitySet="CourierDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FKCourierDel589753" Association="Self.FKCourierDel589753">
+            <End Role="DeliveryNoteOutward" EntitySet="DeliveryNoteOutwards" />
+            <End Role="CourierDelivery" EntitySet="CourierDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo606573" Association="Self.FKDeliveryNo606573">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="DeliveryNoteOutward" EntitySet="DeliveryNoteOutwards" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote896548" Association="Self.FKReturnNote896548">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ReturnNote" EntitySet="ReturnNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FKDefectNoti451172" Association="Self.FKDefectNoti451172">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="DefectNotice" EntitySet="DefectNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FKDefectNoti49230" Association="Self.FKDefectNoti49230">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="DefectNotice" EntitySet="DefectNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo349979" Association="Self.FKDeliveryNo349979">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="DeliveryNoteInward" EntitySet="DeliveryNoteInwards" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo722798" Association="Self.FKDeliveryNo722798">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="DeliveryNoteInward" EntitySet="DeliveryNoteInwards" />
+          </AssociationSet>
+          <AssociationSet Name="FKInwardDelI127670" Association="Self.FKInwardDelI127670">
+            <End Role="DeliveryNoteInward" EntitySet="DeliveryNoteInwards" />
+            <End Role="InwardDelItem" EntitySet="InwardDelItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKDeliveryNo99254" Association="Self.FKDeliveryNo99254">
+            <End Role="DelType" EntitySet="DelTypes" />
+            <End Role="DeliveryNoteOutward" EntitySet="DeliveryNoteOutwards" />
+          </AssociationSet>
+          <AssociationSet Name="FKEmployee484089" Association="Self.FKEmployee484089">
+            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsIssue820338" Association="Self.FKGoodsIssue820338">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="GoodsIssued" EntitySet="GoodsIssueds" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsRecei684024" Association="Self.FKGoodsRecei684024">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="GoodsReceivedNote" EntitySet="GoodsReceivedNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote419469" Association="Self.FKReturnNote419469">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReturnNote" EntitySet="ReturnNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsIssue899455" Association="Self.FKGoodsIssue899455">
+            <End Role="GoodsIssued" EntitySet="GoodsIssueds" />
+            <End Role="GoodsIssuedItem" EntitySet="GoodsIssuedItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsRecei902370" Association="Self.FKGoodsRecei902370">
+            <End Role="GoodsReceivedNote" EntitySet="GoodsReceivedNotes" />
+            <End Role="GoodsReceiveItem" EntitySet="GoodsReceiveItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKGoodsRecei790778" Association="Self.FKGoodsRecei790778">
+            <End Role="InwardDelItem" EntitySet="InwardDelItems" />
+            <End Role="GoodsReceiveItem" EntitySet="GoodsReceiveItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKInwardDelI852451" Association="Self.FKInwardDelI852451">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="InwardDelItem" EntitySet="InwardDelItems" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote127183" Association="Self.FKReturnNote127183">
+            <End Role="ReturnType" EntitySet="ReturnTypes" />
+            <End Role="ReturnNote" EntitySet="ReturnNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FKReturnNote650215" Association="Self.FKReturnNote650215">
+            <End Role="ReturnNote" EntitySet="ReturnNotes" />
+            <End Role="ReturnNoteItem" EntitySet="ReturnNoteItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WarehouseDetailsModelStoreContainer" CdmEntityContainer="WarehouseDetailsEntities">
+          <EntitySetMapping Name="Bins">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.Bin">
+              <MappingFragment StoreEntitySet="Bin">
+                <ScalarProperty Name="BinID" ColumnName="BinID" />
+                <ScalarProperty Name="BinLocation" ColumnName="BinLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoMs">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.BoM">
+              <MappingFragment StoreEntitySet="BoM">
+                <ScalarProperty Name="BOMID" ColumnName="BOMID" />
+                <ScalarProperty Name="BomType" ColumnName="BomType" />
+                <ScalarProperty Name="BomMapID" ColumnName="BomMapID" />
+                <ScalarProperty Name="BOMDate" ColumnName="BOMDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOMItems">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.BOMItem">
+              <MappingFragment StoreEntitySet="BOMItem">
+                <ScalarProperty Name="BOMItemID" ColumnName="BOMItemID" />
+                <ScalarProperty Name="BOMID" ColumnName="BOMID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+                <ScalarProperty Name="BOMItemStatus" ColumnName="BOMItemStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Couriers">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.Courier">
+              <MappingFragment StoreEntitySet="Courier">
+                <ScalarProperty Name="CourierID" ColumnName="CourierID" />
+                <ScalarProperty Name="CourierName" ColumnName="CourierName" />
+                <ScalarProperty Name="CourierEmail" ColumnName="CourierEmail" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourierDeliveries">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.CourierDelivery">
+              <MappingFragment StoreEntitySet="CourierDelivery">
+                <ScalarProperty Name="CourierDelID" ColumnName="CourierDelID" />
+                <ScalarProperty Name="OutwardDelID" ColumnName="OutwardDelID" />
+                <ScalarProperty Name="CourierID" ColumnName="CourierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CusAddressLine1" ColumnName="CusAddressLine1" />
+                <ScalarProperty Name="CusAddressLine2" ColumnName="CusAddressLine2" />
+                <ScalarProperty Name="CustomerCity" ColumnName="CustomerCity" />
+                <ScalarProperty Name="CustomerCountry" ColumnName="CustomerCountry" />
+                <ScalarProperty Name="CustomerPostCode" ColumnName="CustomerPostCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefectNotices">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.DefectNotice">
+              <MappingFragment StoreEntitySet="DefectNotice">
+                <ScalarProperty Name="DefectNoteID" ColumnName="DefectNoteID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="NoticeDate" ColumnName="NoticeDate" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryNoteInwards">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.DeliveryNoteInward">
+              <MappingFragment StoreEntitySet="DeliveryNoteInward">
+                <ScalarProperty Name="InwardDelID" ColumnName="InwardDelID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+                <ScalarProperty Name="InspectedEmpID" ColumnName="InspectedEmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryNoteOutwards">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.DeliveryNoteOutward">
+              <MappingFragment StoreEntitySet="DeliveryNoteOutward">
+                <ScalarProperty Name="OutwardDelID" ColumnName="OutwardDelID" />
+                <ScalarProperty Name="DelNoteDate" ColumnName="DelNoteDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="DelTypeID" ColumnName="DelTypeID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="DelStatus" ColumnName="DelStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DelTypes">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.DelType">
+              <MappingFragment StoreEntitySet="DelType">
+                <ScalarProperty Name="DelTypeID" ColumnName="DelTypeID" />
+                <ScalarProperty Name="DelTypeDesc" ColumnName="DelTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="empTypeID" ColumnName="empTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTypes">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.EmployeeType">
+              <MappingFragment StoreEntitySet="EmployeeType">
+                <ScalarProperty Name="empTypeID" ColumnName="empTypeID" />
+                <ScalarProperty Name="empTypeDesc" ColumnName="empTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsIssueds">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.GoodsIssued">
+              <MappingFragment StoreEntitySet="GoodsIssued">
+                <ScalarProperty Name="GoodsIssuedID" ColumnName="GoodsIssuedID" />
+                <ScalarProperty Name="IssuedDate" ColumnName="IssuedDate" />
+                <ScalarProperty Name="IssuedEmployeeID" ColumnName="IssuedEmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsIssuedItems">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.GoodsIssuedItem">
+              <MappingFragment StoreEntitySet="GoodsIssuedItem">
+                <ScalarProperty Name="GoodsIssuedItemID" ColumnName="GoodsIssuedItemID" />
+                <ScalarProperty Name="GoodsIssuedID" ColumnName="GoodsIssuedID" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+                <ScalarProperty Name="BOMItemID" ColumnName="BOMItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsReceivedNotes">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.GoodsReceivedNote">
+              <MappingFragment StoreEntitySet="GoodsReceivedNote">
+                <ScalarProperty Name="RecNoteID" ColumnName="RecNoteID" />
+                <ScalarProperty Name="NoteDate" ColumnName="NoteDate" />
+                <ScalarProperty Name="IssueEmpID" ColumnName="IssueEmpID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsReceiveItems">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.GoodsReceiveItem">
+              <MappingFragment StoreEntitySet="GoodsReceiveItem">
+                <ScalarProperty Name="ReceivedItemID" ColumnName="ReceivedItemID" />
+                <ScalarProperty Name="RecNoteID" ColumnName="RecNoteID" />
+                <ScalarProperty Name="InwardDelItemID" ColumnName="InwardDelItemID" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="BinID" ColumnName="BinID" />
+                <ScalarProperty Name="AvailableQty" ColumnName="AvailableQty" />
+                <ScalarProperty Name="ReorderLevel" ColumnName="ReorderLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InwardDelItems">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.InwardDelItem">
+              <MappingFragment StoreEntitySet="InwardDelItem">
+                <ScalarProperty Name="InwardDelItemID" ColumnName="InwardDelItemID" />
+                <ScalarProperty Name="InwardDelID" ColumnName="InwardDelID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnNotes">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.ReturnNote">
+              <MappingFragment StoreEntitySet="ReturnNote">
+                <ScalarProperty Name="ReturnNoteID" ColumnName="ReturnNoteID" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="ReturnTypeID" ColumnName="ReturnTypeID" />
+                <ScalarProperty Name="IssuedEmployeeID" ColumnName="IssuedEmployeeID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnNoteItems">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.ReturnNoteItem">
+              <MappingFragment StoreEntitySet="ReturnNoteItem">
+                <ScalarProperty Name="ReturnNoteItemID" ColumnName="ReturnNoteItemID" />
+                <ScalarProperty Name="ReturnNoteID" ColumnName="ReturnNoteID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnTypes">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.ReturnType">
+              <MappingFragment StoreEntitySet="ReturnType">
+                <ScalarProperty Name="ReturnTypeID" ColumnName="ReturnTypeID" />
+                <ScalarProperty Name="ReturnTypeDesc" ColumnName="ReturnTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="WarehouseDetailsModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierAddressLine1" ColumnName="SupplierAddressLine1" />
+                <ScalarProperty Name="SupplierAddressLine2" ColumnName="SupplierAddressLine2" />
+                <ScalarProperty Name="SupplierCity" ColumnName="SupplierCity" />
+                <ScalarProperty Name="SupplierCountry" ColumnName="SupplierCountry" />
+                <ScalarProperty Name="SupplierPostCode" ColumnName="SupplierPostCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
